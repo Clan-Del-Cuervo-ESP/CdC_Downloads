@@ -1,0 +1,136 @@
+from tkinter import * 
+from tkinter import messagebox
+import webbrowser
+
+
+
+
+
+# echo.II-----------------------------------------------------------II
+# echo.II-----------------------------------------------------------II
+# echo.IIII                                                       IIII
+# echo.IIII                   espacial 50                         IIII
+# echo.IIII                 clan del cuervo                       IIII
+# echo.IIII              autor el CEO del clan                    IIII
+# echo.IIII                                                       IIII
+# echo.IIII                                                       IIII
+# echo.IIII                                                       IIII
+# echo.II-----------------------------------------------------------II
+# echo.II-----------------------------------------------------------II
+
+
+
+
+
+
+
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+class MyApp:
+
+    def __init__(
+            self,
+            root):
+        
+        self.root = root
+
+        self.root.title(
+            "CLAN DEL CUERVO-DESCARGAS"
+            )
+        
+        self.root.geometry(
+            "610x200"
+            )
+        
+        self.root.resizable(
+            0,
+            0)
+
+        self.label = Label(
+            root,
+            text="Espacial 50 subcriptores en el canal, gracias.")
+        
+        self.label.pack(
+            pady=10)
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  
+
+    
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::    
+if __name__ == "__main__":
+    root = Tk(
+
+    )
+    app = MyApp(
+        root)
+
+    def infoAdicional():
+        messagebox.showinfo(
+            "clan del cuervo info",
+            "Aplicacion para Descargar los proyectos de github")
+
+    def avisoLicencia():
+        messagebox.showwarning(
+            "licencia",
+            "Derechos de Autor Clan del cuervo/CEO")
+
+    def salirAplicacion():
+        valor = messagebox.askokcancel(
+            'salir',
+            '¿Deseas salir de la aplicación?')
+        
+        if valor:
+            root.destroy(
+
+            )
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+    barraMenu = Menu(root)
+
+    root.config(
+        menu=barraMenu,
+        width=300,
+        height=300)
+
+    archivoMenu = Menu(
+        barraMenu,
+        tearoff=0)
+    archivoMenu.add_command(label='salir',
+                            command=salirAplicacion)
+
+    archivoAyuda = Menu(barraMenu, tearoff=0)
+    archivoAyuda.add_command(label='licencia', command=avisoLicencia)
+    archivoAyuda.add_command(label='acerca de..', command=infoAdicional)
+
+    barraMenu.add_cascade(label="Archivo", menu=archivoMenu)
+    barraMenu.add_cascade(label="Ayuda", menu=archivoAyuda)
+
+    # Función para abrir enlaces
+    def abrir_enlace(enlace):
+        webbrowser.open(enlace)
+
+    # Enlaces de descarga
+    enlace1 = "https://github.com/Clan-Del-Cuervo-ESP/Clan-Del-Cuervo-cmd/archive/refs/heads/main.zip"
+    enlace2 = "https://github.com/Clan-Del-Cuervo-ESP/C-D-C--calculator.py/archive/refs/heads/main.zip"
+    enlace3 = "https://github.com/Clan-Del-Cuervo-ESP/Aplicacion-del-cdc/archive/refs/heads/main.zip"
+
+    enlaces = [enlace1, enlace2, enlace3]
+
+    for enlace in enlaces:
+        enlace_label = Label(root, text=enlace, cursor="hand2", fg="blue")
+        enlace_label.bind("<Button-1>", lambda e, enlace=enlace: abrir_enlace(enlace))
+        enlace_label.pack(pady=10, side=TOP)
+
+    root.mainloop()
+
+
+
+
